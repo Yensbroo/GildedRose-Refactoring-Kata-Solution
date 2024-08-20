@@ -10,13 +10,7 @@ export class BackstagePassItem implements QualityUpdater {
     this.additionFactor = 1;
   }
 
-  public updateQuality(): Item {
-    if (this.item.sellIn < 0) {
-      this.item.quality = 0;
-
-      return this.item;
-    }
-
+  private updateAdditionFactor() {
     if (this.item.sellIn <= 5) {
       this.additionFactor = 3;
     } else if (this.item.sellIn <= 10) {
@@ -24,6 +18,16 @@ export class BackstagePassItem implements QualityUpdater {
     }
 
     this.item.quality = this.item.quality + this.additionFactor;
+  }
+
+  public updateQuality(): Item {
+    if (this.item.sellIn < 0) {
+      this.item.quality = 0;
+
+      return this.item;
+    }
+
+    this.updateAdditionFactor();
 
     return this.item;
   }
