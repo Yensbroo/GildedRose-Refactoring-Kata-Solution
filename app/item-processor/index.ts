@@ -54,6 +54,9 @@ export class ItemProcessor implements QualityUpdater {
     if (this.item.quality > 50 && !isSulfuras) {
       this.item.quality = 50;
     }
+
+    this.item.sellIn = this.item.sellIn - 1;
+
     return this.item;
   }
 }

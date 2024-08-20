@@ -9,6 +9,13 @@ const createItems = (items: Array<Item>) => {
 
 describe("Gilded Rose", () => {
   describe("All items", () => {
+    it("should decrease the sell in by 1", () => {
+      const item = new Item("Foo", 10, 20);
+      const items = createItems([item]);
+
+      expect(items[0].sellIn).toBe(9);
+    });
+
     it("should remove invalid items from array", () => {
       const items = createItems([
         new Item("Foo", "bar", 10),
