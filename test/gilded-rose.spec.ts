@@ -56,4 +56,20 @@ describe("Gilded Rose", () => {
     });
   });
 
+  describe("Sulfuras items", () => {
+    const itemName = "Sulfuras, Hand of Ragnaros";
+    it("Should never decrease quality", () => {
+      const item = new Item(itemName, 3, 80);
+      const items = createItems([item]);
+
+      expect(items[0].quality).toBe(80);
+    });
+
+    it("Should always have a quality of 80", () => {
+      const item = new Item(itemName, 3, 20);
+      const items = createItems([item]);
+
+      expect(items[0].quality).toBe(80);
+    });
+  });
 });
