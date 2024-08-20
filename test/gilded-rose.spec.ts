@@ -72,4 +72,42 @@ describe("Gilded Rose", () => {
       expect(items[0].quality).toBe(80);
     });
   });
+
+  describe("Backstage pass items", () => {
+    const itemName = "Backstage passes to a TAFKAL80ETC concert";
+
+    it("Should increase quality by 1 when sell in date is greater than 10", () => {
+      const item = new Item(itemName, 12, 20);
+      const items = createItems([item]);
+
+      expect(items[0].quality).toBe(21);
+    });
+
+    it("Should increase quality by 2 when sell in date is lower than or equal to 10", () => {
+      const items = createItems([
+        new Item(itemName, 10, 22),
+        new Item(itemName, 9, 20),
+      ]);
+
+      expect(items[0].quality).toBe(24);
+      expect(items[1].quality).toBe(22);
+    });
+
+    it("Should increase quality by 3 when sell in date is lower than or equal to 5", () => {
+      const items = createItems([
+        new Item(itemName, 5, 20),
+        new Item(itemName, 4, 23),
+      ]);
+
+      expect(items[0].quality).toBe(23);
+      expect(items[1].quality).toBe(26);
+    });
+
+    it("Should drop quality to 0 when sell in date has passed 0", () => {
+      const item = new Item(itemName, -1, 20);
+      const items = createItems([item]);
+
+      expect(items[0].quality).toBe(0);
+    });
+  });
 });
