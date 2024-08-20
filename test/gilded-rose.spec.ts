@@ -45,4 +45,14 @@ describe("Gilded Rose", () => {
       expect(items[0].quality).toBe(18);
     });
   });
+
+  describe("Aged Brie", () => {
+    it("Should increase quality when it gets older", () => {
+      const item = new Item("Aged Brie", 5, 20);
+
+      const items = createItems([item]);
+
+      expect(items[0].quality).toBe(21);
+    });
+  });
 });
