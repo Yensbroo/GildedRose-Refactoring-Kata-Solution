@@ -110,4 +110,21 @@ describe("Gilded Rose", () => {
       expect(items[0].quality).toBe(0);
     });
   });
+
+  describe("Conjured items", () => {
+    const itemName = "Conjured";
+    it("Should degrade quality by 2 when sell in date is greater than 0", () => {
+      const item = new Item(itemName, 4, 20);
+      const items = createItems([item]);
+
+      expect(items[0].quality).toBe(18);
+    });
+
+    it("Should degrade quality by 4 when sell in date has passed", () => {
+      const item = new Item(itemName, -1, 20);
+      const items = createItems([item]);
+
+      expect(items[0].quality).toBe(16);
+    });
+  });
 });
