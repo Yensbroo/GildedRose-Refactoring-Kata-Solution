@@ -9,6 +9,15 @@ const createItems = (items: Array<Item>) => {
 
 describe("Gilded Rose", () => {
   describe("All items", () => {
+    it("should remove invalid items from array", () => {
+      const items = createItems([
+        new Item("Foo", "bar", 10),
+        new Item("Foo", 10, "bar"),
+      ]);
+
+      expect(items.length).toBe(0);
+    });
+
     it("should never have a negative quality", () => {
       const item = new Item("Foo", 4, 0);
       const items = createItems([item]);

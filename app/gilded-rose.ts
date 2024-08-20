@@ -1,3 +1,4 @@
+import { INVALID_ITEM } from "./constants";
 import { ItemProcessor } from "./item-processor";
 
 export class Item {
@@ -24,6 +25,10 @@ export class GildedRose {
       this.items[i] = new ItemProcessor(this.items[i]).updateQuality();
     }
 
-    return this.items;
+    const filteredValidItems = this.items.filter(
+      ({ name }) => name !== INVALID_ITEM,
+    );
+
+    return filteredValidItems;
   }
 }

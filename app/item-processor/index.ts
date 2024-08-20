@@ -5,6 +5,7 @@ import { LegendaryItem } from "./legendary";
 import { BackstagePassItem } from "./backstage-pass";
 import { ConjuredItem } from "./conjured";
 import { NormalItem } from "./normal";
+import { INVALID_ITEM } from "@/constants";
 
 export class ItemProcessor implements QualityUpdater {
   item: Item;
@@ -13,8 +14,20 @@ export class ItemProcessor implements QualityUpdater {
     this.item = item;
   }
 
+  private isValidItem() {
+    if (
+      typeof this.item.quality !== "number" ||
+      typeof this.item.sellIn !== "number"
+    ) {
+      this.item.name = INVALID_ITEM;
+      return this.item;
+    }
+  }
+
   updateQuality(): Item {
     const item = this.item;
+    this.isValidItem();
+
     const isSulfuras = item.name.includes("Sulfuras");
 
     switch (true) {
@@ -41,7 +54,6 @@ export class ItemProcessor implements QualityUpdater {
     if (this.item.quality > 50 && !isSulfuras) {
       this.item.quality = 50;
     }
-
     return this.item;
   }
 }
