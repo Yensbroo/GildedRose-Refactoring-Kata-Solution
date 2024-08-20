@@ -24,7 +24,6 @@ describe("Gilded Rose", () => {
       ]);
 
       items.forEach((item) => {
-        console.info(`Quality of item ${item.name} is ${item.quality}`);
         expect(item.quality).toBe(50);
       });
     });
@@ -49,14 +48,13 @@ describe("Gilded Rose", () => {
   describe("Aged Brie", () => {
     it("Should increase quality when it gets older", () => {
       const item = new Item("Aged Brie", 5, 20);
-
       const items = createItems([item]);
 
       expect(items[0].quality).toBe(21);
     });
   });
 
-  describe("Sulfuras items", () => {
+  describe("Legendary items", () => {
     const itemName = "Sulfuras, Hand of Ragnaros";
     it("Should never decrease quality", () => {
       const item = new Item(itemName, 3, 80);
