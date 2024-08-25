@@ -1,5 +1,5 @@
-import { Item, GildedRose } from "@/gilded-rose";
-import { expect } from "vitest";
+import { GildedRose, Item } from "@/gilded-rose";
+import { describe, expect, it } from "vitest";
 
 const createItems = (items: Array<Item>) => {
   const gildedRose = new GildedRose(items);
